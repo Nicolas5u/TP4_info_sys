@@ -9,5 +9,7 @@
 
 // fonction gestion_commande_simple, elle gère les commandes simple
 void gestion_commande_simple(char *rep);
+
+void enleve_entree_commande(char *rep);
     
 #endif

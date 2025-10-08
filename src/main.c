@@ -16,8 +16,7 @@ int main(){
       fgets(rep, sizeof(rep), stdin);
       
       // on enlève l'élément \0 qui était l'avant dernier élément du char
-      char * pos_pb = strchr(rep,'\n');
-      * pos_pb = '\0';
+      enleve_entree_commande(rep);
       
       if (strcmp(rep, "exit") == 0){
       printf ("tu as tapé exit pour sortir de l'interpréteur de commande de Nicolas\n ");
@@ -41,9 +40,6 @@ int main(){
       
       
   }
-  
-  
-  
   
   return 0;
 }
