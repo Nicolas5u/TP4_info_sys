@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <sys/wait.h>
+#include "commande_simple.h"
 // main du projet TP4 d'infomatique système
 
 int main(){
@@ -37,9 +33,7 @@ int main(){
       
       if (enfant_pid == 0){
           // gestion des commandes simples
-          char * argv[] = {rep,NULL};
-          execvp(argv[0],argv);
-          perror("execvp");
+          gestion_commande_simple(rep);
           return 1;
       }else{
           waitpid(enfant_pid,NULL,0);
