@@ -2,12 +2,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-// main du projet TP4llll
+#include <sys/wait.h>
+// main du projet TP4 d'infomatique système
 
 int main(){
   char rep[255];
-  char * pos_pb;
-  char * argv[];
   
   /*
   char * buffer = (char*) malloc(sizeof(rep));
@@ -21,20 +20,36 @@ int main(){
       fgets(rep, sizeof(rep), stdin);
       
       // on enlève l'élément \0 qui était l'avant dernier élément du char
-      * pos_pb = strchr(rep,'\n');
+      char * pos_pb = strchr(rep,'\n');
       * pos_pb = '\0';
       
-      // gestion des commandes simples
-      * argv[] = {rep,NULL};
-      execvp(argv[0],argv);
-      perror("execvp");
-  }
-  
-  
-  if (strcmp(rep, "exit") == 0){
+      if (strcmp(rep, "exit") == 0){
       printf ("tu as tapé exit pour sortir de l'interpréteur de commande de Nicolas\n ");
-      return 1;
+      return 0;
+      }
+  
+      pid_t enfant_pid = fork();
+      
+      if (enfant_pid == -1){
+          perror("fork");
+          return 1;
+      }
+      
+      if (enfant_pid == 0){
+          // gestion des commandes simples
+          char * argv[] = {rep,NULL};
+          execvp(argv[0],argv);
+          perror("execvp");
+          return 1;
+      }else{
+          waitpid(enfant_pid,NULL,0);
+      }
+      
+      
   }
   
-  return 1;
+  
+  
+  
+  return 0;
 }
