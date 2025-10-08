@@ -14,3 +14,15 @@ void enleve_entree_commande(char *rep){
       * pos_pb = '\0';
       return;
 }
+
+int arguments(char *rep){
+      int nbr_argu = 0;
+      const char * separateur = " ,.-!";
+      char * mots = strtok (rep, separateur);
+      while (mots != NULL){
+          printf("%s\n",mots);
+          mots = strtok (rep, separateur);
+          nbr_argu ++;
+      }
+      return nbr_argu;
+}

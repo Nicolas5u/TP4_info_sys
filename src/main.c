@@ -15,6 +15,10 @@ int main(){
       // on récupère ce qui a été envoyé
       fgets(rep, sizeof(rep), stdin);
       
+      
+      // int nbre_argu = arguments(rep);
+      // printf("%d",nbre_argu);
+      
       // on enlève l'élément \0 qui était l'avant dernier élément du char
       enleve_entree_commande(rep);
       

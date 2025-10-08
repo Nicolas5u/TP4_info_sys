@@ -11,5 +11,7 @@
 void gestion_commande_simple(char *rep);
 
 void enleve_entree_commande(char *rep);
+
+int arguments(char *rep);
     
 #endif
